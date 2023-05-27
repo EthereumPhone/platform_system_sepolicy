@@ -117,6 +117,14 @@ perfetto_producer(platform_app)
 # Allow platform apps to create VMs
 virtualizationservice_use(platform_app)
 
+# Allow SMS App
+allow platform_app wallet_service:service_manager find;
+
+# Allow redirect from systemui
+allow platform_app private_wallet_service:service_manager find;
+
+
+
 ###
 ### Neverallow rules
 ###

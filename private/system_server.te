@@ -360,6 +360,12 @@ unix_socket_connect(system_server, tombstoned_intercept, tombstoned)
 allow system_server hwservicemanager:hwservice_manager list;
 allow system_server servicemanager:service_manager list;
 
+# Allow system_server to access all directories under wallet_data_file
+allow system_server wallet_data_file:dir { search read write add_name remove_name };
+
+# Allow system_server to access files within wallet_data_file
+allow system_server wallet_data_file:file { read write open getattr setattr create unlink };
+
 # Send signals to trigger ANR traces.
 allow system_server {
   # This is derived from the list that system server defines as interesting native processes
@@ -888,6 +894,8 @@ allow system_server sysfs_zram:dir search;
 allow system_server sysfs_zram:file rw_file_perms;
 
 add_service(system_server, system_server_service);
+add_service(system_server, wallet_service)
+add_service(system_server, private_wallet_service)
 allow system_server audioserver_service:service_manager find;
 allow system_server authorization_service:service_manager find;
 allow system_server batteryproperties_service:service_manager find;
