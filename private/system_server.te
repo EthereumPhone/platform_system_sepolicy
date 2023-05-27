@@ -370,6 +370,22 @@ unix_socket_connect(system_server, tombstoned_intercept, tombstoned)
 allow system_server hwservicemanager:hwservice_manager list;
 allow system_server servicemanager:service_manager list;
 
+# Allow system_server to access all directories under wallet_data_file
+allow system_server wallet_data_file:dir { search read write add_name remove_name };
+
+# Allow system_server to access files within wallet_data_file
+allow system_server wallet_data_file:file { read write open getattr setattr create unlink };
+
+# Allow system_server to access all directories under lightclient_data_file
+allow system_server lightclient_data_file:dir { search read write add_name remove_name };
+
+# Allow system_server to access files within lightclient_data_file
+allow system_server lightclient_data_file:file { read write open getattr setattr create unlink };
+
+allow system_server lightclient_executable:file { read open getattr execute_no_trans execute map };
+
+allow system_server helios_lightclient_executable:file { read open getattr execute_no_trans execute map };
+
 # Send signals to trigger ANR traces.
 allow system_server {
   # This is derived from the list that system server defines as interesting native processes
@@ -956,7 +972,10 @@ allow system_server kernel:security read_policy;
 
 add_service(system_server, system_server_service);
 allow system_server artd_service:service_manager find;
-allow system_server artd_pre_reboot_service:service_manager find;
+add_service(system_server, wallet_service)
+add_service(system_server, private_wallet_service)
+add_service(system_server, localllm_service)
+add_service(system_server, geth_service)
 allow system_server audioserver_service:service_manager find;
 allow system_server authorization_service:service_manager find;
 allow system_server batteryproperties_service:service_manager find;
@@ -1307,6 +1326,9 @@ neverallow system_server {
   -toolbox_exec
   -logcat_exec
   with_asan(`-shell_exec -asanwrapper_exec -zygote_exec')
+  -lightclient_executable
+  -helios_lightclient_executable
+  -shell_exec
 }:file execute_no_trans;
 
 # Ensure that system_server doesn't perform any domain transitions other than

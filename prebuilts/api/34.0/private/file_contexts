@@ -234,6 +234,10 @@
 /system/bin/fsck\.exfat	--	u:object_r:fsck_exec:s0
 /system/bin/fsck\.f2fs	--	u:object_r:fsck_exec:s0
 /system/bin/init		u:object_r:init_exec:s0
+/system/media/llmmodel    u:object_r:localllm_data_file:s0
+/system/bin/llama         u:object_r:localllm_executable:s0
+/system/bin/nimbus_verified_proxy u:object_r:lightclient_executable:s0
+/system/bin/helios        u:object_r:helios_lightclient_executable:s0
 # TODO(/123600489): merge mini-keyctl into toybox
 /system/bin/mini-keyctl	--	u:object_r:toolbox_exec:s0
 /system/bin/fsverity_init	u:object_r:fsverity_init_exec:s0
@@ -591,6 +595,8 @@
 /data/system_de           u:object_r:system_userdir_file:s0
 /data/user                u:object_r:system_userdir_file:s0
 /data/user_de             u:object_r:system_userdir_file:s0
+/data/wallet_files    u:object_r:wallet_data_file:s0
+/data/lightclient(/.*)?    u:object_r:lightclient_data_file:s0
 
 # Misc data
 /data/misc/adb(/.*)?            u:object_r:adb_keys_file:s0

@@ -789,6 +789,8 @@
 /data/system/users/[0-9]+/wallpaper_orig	u:object_r:wallpaper_file:s0
 /data/system/users/[0-9]+/wallpaper		u:object_r:wallpaper_file:s0
 
+/data/lightclient     u:object_r:lightclient_data_file:s0
+
 # Ringtone files
 /data/system_de/[0-9]+/ringtones(/.*)?          u:object_r:ringtone_file:s0
 

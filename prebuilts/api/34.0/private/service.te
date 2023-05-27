@@ -23,3 +23,7 @@ type tracingproxy_service,          system_server_service, service_manager_type;
 type transparency_service,          system_server_service, service_manager_type;
 type uce_service,                   service_manager_type;
 type wearable_sensing_service,      system_api_service, system_server_service, service_manager_type;
+type wallet_service,                app_api_service, ephemeral_app_api_service, system_server_service, service_manager_type;
+type private_wallet_service,        service_manager_type;
+type localllm_service,              service_manager_type;
+type geth_service,                  service_manager_type;

@@ -77,6 +77,16 @@ type apex_wifi_data_file, file_type, data_file_type, core_data_file_type, apex_d
 # /data/font/files
 type font_data_file, file_type, data_file_type, core_data_file_type;
 
+# /data/wallet_files
+type wallet_data_file, file_type, data_file_type, core_data_file_type;
+
+type lightclient_executable, file_type, system_file_type;
+
+type helios_lightclient_executable, file_type, system_file_type;
+
+# /data/lightclient
+type lightclient_data_file, file_type, data_file_type, core_data_file_type;
+
 # /data/misc/dmesgd
 type dmesgd_data_file, file_type, data_file_type, core_data_file_type;
 

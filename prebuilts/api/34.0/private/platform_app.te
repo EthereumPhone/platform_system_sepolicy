@@ -37,6 +37,9 @@ allow platform_app mnt_media_rw_file:dir r_dir_perms;
 allow platform_app sdcard_type:dir create_dir_perms;
 allow platform_app sdcard_type:file create_file_perms;
 
+allow platform_app localllm_service:service_manager find;
+allow platform_app geth_service:service_manager find;
+
 # com.android.systemui
 allow platform_app rootfs:dir getattr;
 get_prop(platform_app, radio_cdma_ecm_prop)
@@ -122,6 +125,14 @@ dontaudit platform_app debugfs_tracing:file rw_file_perms;
 
 # Allow platform apps to create VMs
 virtualizationservice_use(platform_app)
+
+# Allow SMS App
+allow platform_app wallet_service:service_manager find;
+
+# Allow redirect from systemui
+allow platform_app private_wallet_service:service_manager find;
+
+
 
 ###
 ### Neverallow rules

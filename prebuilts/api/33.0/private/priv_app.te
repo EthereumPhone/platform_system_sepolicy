@@ -268,6 +268,8 @@ neverallow priv_app app_data_file:lnk_file { open read getattr };
 # Do not allow getting permission-protected network information from sysfs.
 neverallow priv_app sysfs_net:file *;
 
+allow priv_app wallet_service:service_manager find;
+
 # Restrict socket ioctls. Either 1. disallow privileged ioctls, 2. disallow the
 # ioctl permission, or 3. disallow the socket class.
 neverallowxperm priv_app domain:{ icmp_socket rawip_socket tcp_socket udp_socket } ioctl priv_sock_ioctls;

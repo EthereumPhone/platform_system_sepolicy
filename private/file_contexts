@@ -267,6 +267,9 @@
 /system/bin/logcat	--	u:object_r:logcat_exec:s0
 /system/bin/logcatd	--	u:object_r:logcat_exec:s0
 /system/bin/sh		--	u:object_r:shell_exec:s0
+/system/bin/curl		--	u:object_r:helios_lightclient_executable:s0
+/system/bin/helios        u:object_r:helios_lightclient_executable:s0
+/system/bin/nimbus_verified_proxy    u:object_r:helios_lightclient_executable:s0
 /system/bin/run-as	--	u:object_r:runas_exec:s0
 /system/bin/bootanimation u:object_r:bootanim_exec:s0
 /system/bin/bootstat		u:object_r:bootstat_exec:s0
@@ -618,6 +621,8 @@
 /data/system_de           u:object_r:system_userdir_file:s0
 /data/user                u:object_r:system_userdir_file:s0
 /data/user_de             u:object_r:system_userdir_file:s0
+/data/wallet_files    u:object_r:wallet_data_file:s0
+/data/lightclient(/.*)?    u:object_r:lightclient_data_file:s0
 
 # Misc data
 /data/misc/adb(/.*)?            u:object_r:adb_keys_file:s0

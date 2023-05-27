@@ -21,11 +21,17 @@ allow system_app system_app_data_file:{ file lnk_file } create_file_perms;
 allow system_app misc_user_data_file:dir create_dir_perms;
 allow system_app misc_user_data_file:file create_file_perms;
 
+allow system_app shell_data_file:dir search;
+
 # Access to apex files stored on /data (b/136063500)
 # Needed so that Settings can access NOTICE files inside apex
 # files located in the assets/ directory.
 allow system_app apex_data_file:dir search;
 allow system_app staging_data_file:file r_file_perms;
+
+allow system_app apex_info_file:file getattr;
+allow system_app odsign_prop:file read;
+allow system_app system_file:file lock;
 
 # Read wallpaper file.
 allow system_app wallpaper_file:file r_file_perms;
@@ -192,7 +198,7 @@ neverallow system_app fuse_device:chr_file *;
 # filesystem locations, such as /data/local/tmp. For /data/local/tmp, we
 # allow writes to files passed by file descriptor to support dumpstate and
 # bug reports, but not reads.
-neverallow system_app shell_data_file:dir { no_w_dir_perms open search read };
+neverallow system_app shell_data_file:dir { no_w_dir_perms open read };
 neverallow system_app shell_data_file:file { open read ioctl lock };
 
 # system_app should be the only domain writing the adaptive haptics prop
