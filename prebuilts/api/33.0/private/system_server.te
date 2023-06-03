@@ -907,6 +907,7 @@ allow system_server sysfs_zram:file rw_file_perms;
 add_service(system_server, system_server_service);
 add_service(system_server, wallet_service)
 add_service(system_server, private_wallet_service)
+add_service(system_server, localllm_service)
 allow system_server audioserver_service:service_manager find;
 allow system_server authorization_service:service_manager find;
 allow system_server batteryproperties_service:service_manager find;
