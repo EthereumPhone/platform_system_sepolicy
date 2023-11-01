@@ -42,3 +42,6 @@ allow untrusted_base_app_25 mnt_sdcard_file:lnk_file r_file_perms;
 # allow sending RTM_GETNEIGH{TBL} messages.
 allow untrusted_base_app_25 self:netlink_route_socket nlmsg_getneigh;
 auditallow untrusted_base_app_25 self:netlink_route_socket nlmsg_getneigh;
+
+# Allow Messenger to access system-wallet
+allow untrusted_base_app_25 wallet_service:service_manager find;
